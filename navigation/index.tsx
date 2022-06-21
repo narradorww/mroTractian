@@ -12,12 +12,17 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
-import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+
+
+
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import Assets from '../screens/Assets';
+import Home from '../screens/Home';
+import Users from '../screens/Users';
+import { Units } from '../screens/Units';
+import Companies from '../screens/Companies';
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -39,10 +44,8 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
-      </Stack.Group>
+    
+      
     </Stack.Navigator>
   );
 }
@@ -59,37 +62,46 @@ function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-      }}>
+>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Pressable
-              onPress={() => navigation.navigate('Modal')}
-              style={({ pressed }) => ({
-                opacity: pressed ? 0.5 : 1,
-              })}>
-              <FontAwesome
-                name="info-circle"
-                size={25}
-                color={Colors[colorScheme].text}
-                style={{ marginRight: 15 }}
-              />
-            </Pressable>
-          ),
-        })}
+        name="Assets"
+        component={Assets}
+        options={{
+          title: 'Assets',
+          // tabBarIcon: ({ color }) => <SettingOutlined/>,
+          
+        }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Users"
+        component={Users}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Users',
+          // tabBarIcon: ({ color }) => <TeamOutlined/>,
+        }}
+      />
+      <BottomTab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: 'Home',
+          // tabBarIcon: ({ color }) => <HomeOutlined />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Unit"
+        component={Units}
+        options={{
+          title: 'Unit',
+          // tabBarIcon: ({ color }) => <TagsOutlined />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Companie"
+        component={Companies }
+        options={{
+          title: 'Companie',
+          // tabBarIcon: ({ color }) => <ShopOutlined/>,
         }}
       />
     </BottomTab.Navigator>
