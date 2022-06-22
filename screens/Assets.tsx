@@ -7,21 +7,31 @@ import {
   Card,
   WingBlank,
   Button,
+  InputItem,
+  WhiteSpace,
 } from "@ant-design/react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
-const url = "https://my-json-server.typicode.com/tractian/fake-api/assets";
+const path = "/assets";
 
 export default function Assets() {
-  const { data: assets } = useFetch<IAssets | null>(url);
+  const { data: assets } = useFetch<IAssets | null>(path);
 
   return (
+    <LinearGradient
+    colors={["#030852","#10239e","#2f54eb","#597ef7"]}
+    style={styles.background}>
     <ScrollView>
+   
       <View>
-        {assets?.map((asset) => {
+      
+        <InputItem clear  placeholder="Search by Name" ></InputItem>
+        <WhiteSpace size="lg" />
+        {assets?.map((asset: IAssets) => {
           return (
-            <WingBlank size="md" style={{ backgroundColor: "#125af6" }}>
+            <WingBlank key={asset.id}size="md" >
               <Card style={styles.card}>
-                <Card.Header title={asset.name} style={{ width: 320 }} />
+                <Card.Header title={asset.name} style={{ width: 320 }} extra={asset.id} />
                 <Card.Body>
                   <View style={styles.body}>
                     <View style={styles.status}>
@@ -29,12 +39,27 @@ export default function Assets() {
                         source={{ uri: asset.image }}
                         style={{ width: 100, height: 100 }}
                       />
-                      <Text style={{marginTop: 20 }}>{asset.status}</Text>
+                      {asset.status === "inAlert" && (
+                        <Button type="ghost" size="small"  style={{backgroundColor:"#f5222d", width: 100, marginTop: 16}}>
+                        <Text style={{marginTop: 20 }}>In Alert</Text>
+                        </Button>
+                      )}
+                      {asset.status === "inOperation" && (
+                        <Button type="ghost" size="small"  style={{backgroundColor:"#237804",width: 100, marginTop: 16}}>
+                        <Text style={{marginTop: 20 }}>In Operation</Text>
+                        </Button>
+                      )}
+                      {asset.status === "inDowntime" && (
+                        <Button type="ghost" size="small"  style={{backgroundColor:"#faad14",width: 100, marginTop: 16}}>
+                        <Text style={{marginTop: 20 }}>In Downtime</Text>
+                        </Button>
+                      )}
+                      
                     </View>
                     <View style={styles.control}>
                       <Text>HealthScore</Text>
                       <Text>{asset.healthscore}%</Text>
-                      <Button style={{marginTop: 40}}type='ghost' size='large'>View {asset.name} </Button>
+                      <Button style={{marginTop: 60}}type='ghost' size='small'>View {asset.name} </Button>
                     </View>
                   </View>
                 </Card.Body>
@@ -42,12 +67,24 @@ export default function Assets() {
             </WingBlank>
           );
         })}
+       
       </View>
+      
     </ScrollView>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
+
+  background:{
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
+},
+
   card: {
     width: "100%",
     height: 220,
@@ -71,6 +108,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignContent: "space-between",
     alignItems: "center",
-    margin: 10,
+   
   },
 });
