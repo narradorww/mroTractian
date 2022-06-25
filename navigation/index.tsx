@@ -21,8 +21,10 @@ import Assets from '../screens/Assets';
 import Home from '../screens/Home';
 import Users from '../screens/Users';
 import  Units from '../screens/Units';
+import Unit from '../screens/Unit';
 import Companies from '../screens/Companies';
 import { Icon } from '@ant-design/react-native';
+import Asset from '../screens/Asset';
 
 
 export default function Navigation() {
@@ -45,6 +47,13 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Unit" component={Unit} options={{ headerShown: false }} />
+      <Stack.Screen name="Companies" component={Companies} options={{ headerShown: false }} />
+      <Stack.Screen name="Units" component={Units} options={{ headerShown: false }} />
+      <Stack.Screen name="Users" component={Users} options={{ headerShown: false }} />
+      <Stack.Screen name="Assets" component={Assets} options={{ headerShown: false }} />
+      <Stack.Screen name="Asset" component={Asset} options={{ headerShown: false }} />
+
     
       
     </Stack.Navigator>

@@ -19,6 +19,7 @@ const linking: LinkingOptions<RootStackParamList> = {
       Users: 'users',
       Assets: 'assets',
       Units: 'units',
+      Unit: 'unit',
       Companies: 'companies',
       Modal: 'modal',
       NotFound: '*',

@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Image, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Button, WhiteSpace, WingBlank } from "@ant-design/react-native";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function Home({ navigation }: any) {
   return (
@@ -16,42 +17,48 @@ export default function Home({ navigation }: any) {
         </View>
 
         <View style={styles.container}>
-          <WingBlank size="md" style={styles.button}>
+          <WingBlank size="md" style={styles.wingblank}>
             <Button
               type="ghost"
               size="large"
               onPress={() => navigation.navigate("Assets")}
             >
+              <AntDesign size={26} name="tool" />
               Assets
             </Button>
           </WingBlank>
 
-          <WingBlank size="md" style={styles.button}>
+          <WingBlank size="md" style={styles.wingblank}>
             <Button
               type="ghost"
               size="large"
               onPress={() => navigation.navigate("Users")}
-            >
+            > 
+              <AntDesign size={26} name="team" />
               Users
+            
+              
             </Button>
           </WingBlank>
 
-          <WingBlank size="md" style={styles.button}>
+          <WingBlank size="md" style={styles.wingblank}>
             <Button
               type="ghost"
               size="large"
               onPress={() => navigation.navigate("Units")}
             >
+              <AntDesign size={26} name="tagso" />
               Units
             </Button>
           </WingBlank>
 
-          <WingBlank size="md" style={styles.button}>
+          <WingBlank size="md" style={styles.wingblank}>
             <Button
               type="ghost"
               size="large"
               onPress={() => navigation.navigate("Companies")}
             >
+              <AntDesign size={26} name="isv" />
               Companies
             </Button>
           </WingBlank>
@@ -89,11 +96,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 20,
   },
-  button: {
+  wingblank: {
+
     backgroundColor: "#adc6ff",
-
-    color: "white",
-
+   
     marginBottom: 32,
     marginLeft: 20,
     marginRight: 20,

@@ -17,6 +17,7 @@ const path = "/units";
 
 export default function Units({navigation}: any) {
     const { data: units } = useFetch<IUnits | null>(path);
+    
     return (
       <LinearGradient
       colors={["#030852", "#10239e", "#2f54eb", "#597ef7"]}

@@ -1,7 +1,5 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useFetch } from "../hooks/useFetch";
-import Colors from "../constants/Colors";
-
 import { IAssets } from "../interfaces/IAssets";
 import {
   Card,
@@ -14,7 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const path = "/assets";
 
-export default function Assets() {
+export default function Assets<IAssets> ({ navigation }: any) {
   const { data: assets } = useFetch<IAssets | null>(path);
 
   return (
@@ -28,6 +26,7 @@ export default function Assets() {
         <InputItem clear  placeholder="Search by Name" ></InputItem>
         <WhiteSpace size="lg" />
         {assets?.map((asset: IAssets) => {
+          const id = asset.id;
           return (
             <WingBlank key={asset.id}size="md" >
               <Card style={styles.card}>
@@ -59,7 +58,7 @@ export default function Assets() {
                     <View style={styles.control}>
                       <Text>HealthScore</Text>
                       <Text>{asset.healthscore}%</Text>
-                      <Button style={{marginTop: 60}}type='ghost' size='small'>View {asset.name} </Button>
+                      <Button style={{marginTop: 60}}type='ghost' size='small' onPress={()=>navigation.navigate('Asset', {id: id} )}>View {asset?.name} </Button>
                     </View>
                   </View>
                 </Card.Body>
