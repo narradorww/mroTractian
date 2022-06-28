@@ -25,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#000000"
-      }
+      },
+      "package": "com.rodrigo.alexandre.mroTractian"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
